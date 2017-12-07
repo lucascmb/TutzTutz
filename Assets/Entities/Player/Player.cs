@@ -80,39 +80,43 @@ public class Player : MonoBehaviour, Entity
         {
             if (myTurn != gb.GetTurn())
             {
-                if (Input.GetKeyDown(KeyCode.LeftArrow) && movementLeft)
+                if (Input.GetKeyDown(KeyCode.S))
                 {
-                    walking = true;
-                    anim.SetInteger("walking", 1);
-                    myTurn = gb.GetTurn();
-                    comeFrom = "Right";
-                    rb.velocity = Vector2.left * speed;
-                }
-                else if (Input.GetKeyDown(KeyCode.RightArrow) && movementRight)
-                {
-                    walking = true;
-                    anim.SetInteger("walking", 2);
-                    myTurn = gb.GetTurn();
-                    comeFrom = "Left";
-                    rb.velocity = Vector2.right * speed;
-                }
-                else if (Input.GetKeyDown(KeyCode.UpArrow) && movementUp)
-                {
-                    walking = true;
-                    anim.SetInteger("walking", 3);
-                    myTurn = gb.GetTurn();
-                    comeFrom = "Down";
-                    rb.velocity = Vector2.up * speed;
-                }
-                else if (Input.GetKeyDown(KeyCode.DownArrow) && movementDown)
-                {
-                    walking = true;
-                    anim.SetInteger("walking", 4);
-                    myTurn = gb.GetTurn();
-                    comeFrom = "Up";
-                    rb.velocity = Vector2.down * speed;
+                    if (Input.GetKey(KeyCode.LeftArrow) && movementLeft)
+                    {
+                        walking = true;
+                        anim.SetInteger("walking", 1);
+                        myTurn = gb.GetTurn();
+                        comeFrom = "Right";
+                        rb.velocity = Vector2.left * speed;
+                    }
+                    else if (Input.GetKey(KeyCode.RightArrow) && movementRight)
+                    {
+                        walking = true;
+                        anim.SetInteger("walking", 2);
+                        myTurn = gb.GetTurn();
+                        comeFrom = "Left";
+                        rb.velocity = Vector2.right * speed;
+                    }
+                    else if (Input.GetKey(KeyCode.UpArrow) && movementUp)
+                    {
+                        walking = true;
+                        anim.SetInteger("walking", 3);
+                        myTurn = gb.GetTurn();
+                        comeFrom = "Down";
+                        rb.velocity = Vector2.up * speed;
+                    }
+                    else if (Input.GetKey(KeyCode.DownArrow) && movementDown)
+                    {
+                        walking = true;
+                        anim.SetInteger("walking", 4);
+                        myTurn = gb.GetTurn();
+                        comeFrom = "Up";
+                        rb.velocity = Vector2.down * speed;
+                    }
                 }
                 exPos = this.transform.position;
+                
             }
         }
         else
