@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Entity {
+public interface IEntity {
 
     void GetDamage();
     void GetHeal();

@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour, Entity
+public class Player : MonoBehaviour, IEntity
 {
+    public string nome = "Player";
 
     public float health;
 
     private bool movementUp, movementDown, movementLeft, movementRight, walking, act;
+
+    private bool cima = false, baixo = false, esquerda = false, direita = false;
 
     private Rigidbody2D rb;
     private Animator anim;
@@ -22,8 +25,9 @@ public class Player : MonoBehaviour, Entity
     private GameBehaviour gb;
 
     private float myTurn;
-
     public float speed;
+
+    private bool instant = false;
 
     void Start()
     {
@@ -39,6 +43,46 @@ public class Player : MonoBehaviour, Entity
         verifyClick();
         movement();
         checkObjects();
+        verifyGB();
+    }
+
+    void verifyGB()
+    {
+        if(gb.GetTurn() > this.myTurn)
+        {
+            if(esquerda == true)
+            {
+                walking = true;
+                anim.SetInteger("walking", 1);
+                comeFrom = "Right";
+                rb.velocity = Vector2.left * speed;
+                esquerda = false;
+            }
+            else if(direita == true)
+            {
+                walking = true;
+                anim.SetInteger("walking", 2);
+                comeFrom = "Left";
+                rb.velocity = Vector2.right * speed;
+                direita = false;
+            }
+            else if(cima == true)
+            {
+                walking = true;
+                anim.SetInteger("walking", 3);
+                comeFrom = "Down";
+                rb.velocity = Vector2.up * speed;
+                cima = false;
+            }
+            else if(baixo == true)
+            {
+                walking = true;
+                anim.SetInteger("walking", 4);
+                comeFrom = "Up";
+                rb.velocity = Vector2.down * speed;
+                baixo = false;
+            }
+        }
     }
 
     void verifyClick()
@@ -49,13 +93,13 @@ public class Player : MonoBehaviour, Entity
         }
     }
 
-    /*void DrawRaysForCollisions()
+    void DrawRaysForCollisions()
     {
-       *Debug.DrawRay(transform.position, Vector3.up, Color.green);
+        Debug.DrawRay(transform.position, Vector3.up, Color.green);
         Debug.DrawRay(transform.position, Vector3.down, Color.green);
         Debug.DrawRay(transform.position, Vector3.left, Color.green);
         Debug.DrawRay(transform.position, Vector3.right, Color.green);
-    } */
+    }
 
     private void checkObjects()
     {
@@ -80,39 +124,27 @@ public class Player : MonoBehaviour, Entity
         {
             if (myTurn != gb.GetTurn())
             {
-                if (Input.GetKeyDown(KeyCode.S))
+                if (Input.GetKeyDown(KeyCode.W))
                 {
                     if (Input.GetKey(KeyCode.LeftArrow) && movementLeft)
                     {
-                        walking = true;
-                        anim.SetInteger("walking", 1);
+                        esquerda = true;
                         myTurn = gb.GetTurn();
-                        comeFrom = "Right";
-                        rb.velocity = Vector2.left * speed;
                     }
                     else if (Input.GetKey(KeyCode.RightArrow) && movementRight)
                     {
-                        walking = true;
-                        anim.SetInteger("walking", 2);
+                        direita = true;
                         myTurn = gb.GetTurn();
-                        comeFrom = "Left";
-                        rb.velocity = Vector2.right * speed;
                     }
                     else if (Input.GetKey(KeyCode.UpArrow) && movementUp)
                     {
-                        walking = true;
-                        anim.SetInteger("walking", 3);
+                        cima = true;
                         myTurn = gb.GetTurn();
-                        comeFrom = "Down";
-                        rb.velocity = Vector2.up * speed;
                     }
                     else if (Input.GetKey(KeyCode.DownArrow) && movementDown)
                     {
-                        walking = true;
-                        anim.SetInteger("walking", 4);
+                        baixo = true;
                         myTurn = gb.GetTurn();
-                        comeFrom = "Up";
-                        rb.velocity = Vector2.down * speed;
                     }
                 }
                 exPos = this.transform.position;

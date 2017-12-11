@@ -5,13 +5,14 @@ using UnityEngine;
 public class ChangeTimer : MonoBehaviour {
 
     private Animator timerAnim;
-    public float interval;
-    public float duration;
+    private GameBehaviour gb;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        gb = GameObject.FindObjectOfType<GameBehaviour>();
         timerAnim = gameObject.GetComponent<Animator>();
-        timerAnim.speed = 1 / duration;
+        timerAnim.speed = 1 / gb.GetDelayTime();
+
 	}
 	
 	// Update is called once per frame
@@ -27,6 +28,11 @@ public class ChangeTimer : MonoBehaviour {
 
 
         }
+    }
+
+    public void ResetTime()
+    {
+        timerAnim.SetBool("OffsetCheck", true);
     }
 
 }

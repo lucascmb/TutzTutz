@@ -1555,8 +1555,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e170d1a61a3507248a065c01d265b4a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interval: 0.5
-  duration: 1
 --- !u!1001 &319693664
 Prefab:
   m_ObjectHideFlags: 0
@@ -2060,6 +2058,11 @@ Prefab:
     - target: {fileID: 4330833667447906, guid: f216b0449d24eb541b73b35bd9f14c9b, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114645754352234952, guid: f216b0449d24eb541b73b35bd9f14c9b,
+        type: 2}
+      propertyPath: delayTime
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f216b0449d24eb541b73b35bd9f14c9b, type: 2}
@@ -3364,6 +3367,46 @@ Transform:
   m_PrefabParentObject: {fileID: 4511303397416356, guid: 1f503ddb0d977c440a57292c6558ff21,
     type: 2}
   m_PrefabInternal: {fileID: 663244584}
+--- !u!1 &702802824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 702802826}
+  - component: {fileID: 702802825}
+  m_Layer: 0
+  m_Name: Enemy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &702802825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 702802824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2176f87d7c9f1439ab97febc910322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &702802826
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 702802824}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5, y: 0.2, z: -2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &752534031
 Prefab:
   m_ObjectHideFlags: 0
@@ -5747,6 +5790,10 @@ Prefab:
         type: 2}
       propertyPath: m_Size.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1841390628471776, guid: 9e8a4506b00edae4f8f1419cf1f7ca4a, type: 2}
+      propertyPath: m_TagString
+      value: Killable
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e8a4506b00edae4f8f1419cf1f7ca4a, type: 2}
